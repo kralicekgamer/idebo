@@ -1,4 +1,6 @@
+import os
 import configparser
+
 from mpvnet_cz_api import Api
 
 reset = "\033[0m"
@@ -6,8 +8,11 @@ red = "\033[31m"
 blue = "\033[34m"
 
 def main():
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    CONFIG_PATH = os.path.join(BASE_DIR, "config.ini")
+
     config = configparser.ConfigParser()
-    config.read("config.ini")
+    config.read(CONFIG_PATH)
     if config["Config"]["HomeStop"] == "0":
         print("Configure me in config.ini.")
         exit()
